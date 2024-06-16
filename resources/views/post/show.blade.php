@@ -7,12 +7,13 @@
 
     <div class="py-12">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 text-gray-900 dark:text-gray-100 flex flex-col gap-10">
+            <div class="my-3 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 text-gray-900 dark:text-gray-100 flex flex-col gap-10">
+                <div class="">
+                    <p class="text-xl">{{$post->body}}</p>
+                </div>
+            </div>
+            <div class="my-3 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 text-gray-900 dark:text-gray-100 flex flex-col gap-10">
                     <div class="">
-                        <p class="text-xl">{{$post->body}}</p>
-                    </div>
-                    
-                    <div class="mt-8">
                         <h2 class="text-lg mb-3" >Comments</h2>
                         @auth
                             <form method="POST" action="{{ route("posts.comments.store",$post->id) }}">
@@ -37,10 +38,10 @@
                         
                         <ul>
                             @forelse ( $post->comments as $post)
-                                    <li  class=" my-1 cursor-pointer lg:w-80 w-full h-36 p-4 shadow-sm sm:rounded-lg text-gray-900 dark:text-gray-100 ">
+                                    <li  class=" my-1 cursor-pointer  p-4 shadow-sm sm:rounded-lg text-gray-900 dark:text-gray-100 ">
                                         
                                         <p class="text-lg">{{ \Illuminate\Support\Str::limit($post->body , 100) }}</p> <!-- Truncates the body to 100 characters -->
-                                        <p class=" text-sm font-light">Written by {{ \Illuminate\Support\Str::limit($post->user->name , 10) }}</p>
+                                        <p class=" text-xs font-light">Written by {{ \Illuminate\Support\Str::limit($post->user->name , 10) }}</p>
                                         
                                     </li>
                                 
@@ -49,7 +50,6 @@
                             @endforelse
                         </ul>
                     </div>
-
             </div>
         </div>
     </div>
